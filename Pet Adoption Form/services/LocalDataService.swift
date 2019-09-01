@@ -12,21 +12,11 @@ import SwiftyJSON
 class LocalDataService {
 
         static var instance = LocalDataService()
-
     
-    func getDataFromLocalJsonFile(){
     
-        let path = Bundle.main.path(forResource: "pet_adoption", ofType: "json")!
-        let jsonString = try? String(contentsOfFile: path, encoding: String.Encoding.utf8)
-        let json = JSON(parseJSON: jsonString!)
-        FormTitle = json["name"].stringValue
-        if let data_arr = json["pages"].array{
-            for item in data_arr{
-                
-              
-            }
-        }
-
+    //code to instantiate the table view
    
-    }
+    
+
+  
 }

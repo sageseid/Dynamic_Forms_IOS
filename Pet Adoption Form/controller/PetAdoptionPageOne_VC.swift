@@ -7,55 +7,75 @@
 //
 
 import UIKit
+class PetAdoptionPageOne_VC: UIViewController {
 
-class PetAdoptionPageOne_VC: UIViewController,UITableViewDelegate, UITableViewDataSource {
-   
-   
+    @IBOutlet weak var SBFormTitle: UILabel!
     
-
-    @IBOutlet weak var SBPetAdoptionPageOneTableView: UITableView!
+    var base = [BaseModel]()
+    var pg = [PagesModel]()
+    var elements = [ElementsModel]()
+    var sections = [SectionsModel]()
+    var currentIndex = 0
     
+    
+    let DynamicTableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SBPetAdoptionPageOneTableView.dataSource = self
-        SBPetAdoptionPageOneTableView.delegate = self
+        getDataFromLocalJsonFile()
+        setUpTableView()
+        
+        let pgs = base.flatMap{$0.pages}
+        pg.append(contentsOf: pgs)
+        let first = pg[currentIndex].sections.flatMap{$0.elements}
+        elements.append(contentsOf: first)
+        
     }
     
     
-    //code to instantiate the table view
+    
+    
+    func getDataFromLocalJsonFile(){
+        guard let data = stubbedResponse("pet_adoption") else {return}
+        do {
+            let decoded = try JSONDecoder().decode(BaseModel.self, from: data)
+            SBFormTitle.text = decoded.name
+            base.append(decoded)
+        } catch {
+            print("error")
+        }
+        let array = base.compactMap {$0}
+            .flatMap{$0.pages}
+        array.forEach { (pg) in
+            sections.append(contentsOf: pg.sections)
+        }
+    }
+
+     func stubbedResponse(_ filename: String) -> Data! {
+        @objc class TestClass: NSObject {}
+        let bundle = Bundle(for: TestClass.self)
+        let path = bundle.path(forResource: filename, ofType: "json")
+        return (try? Data(contentsOf: URL(fileURLWithPath: path!)))
+        
+    }
+    
+    
+    
+    func setUpTableView(){
+        view.addSubview(DynamicTableView)
+        DynamicTableView.translatesAutoresizingMaskIntoConstraints = false
+        DynamicTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        DynamicTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        DynamicTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
+        DynamicTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+       
+     
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          return 5
+        return elements.count
     }
+    
     
    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.row == 0 {
-//            let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "firstCustomCell")
-//            //set the data here
-//            return cell
-//        }
-//        else if indexPath.row == 1 {
-//            let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "secondCustomCell")
-//            //set the data here
-//            return cell
-//        }
-//        else if indexPath.row == 2 {
-//            let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "secondCustomCell")
-//            //set the data here
-//            return cell
-//        }
-//        else if indexPath.row == 3 {
-//            let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "secondCustomCell")
-//            //set the data here
-//            return cell
-//        }
-//        else {
-//            let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "thirdCustomCell")
-//            //set the data here
-//            return cell
-//        }
-    }
-    
 }
