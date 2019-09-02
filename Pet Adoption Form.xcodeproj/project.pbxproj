@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4E0B108C23191BFF00D47761 /* PetAdoptionPageOne_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0B108B23191BFF00D47761 /* PetAdoptionPageOne_VC.swift */; };
-		4E0B108E2319221E00D47761 /* LocalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0B108D2319221E00D47761 /* LocalDataService.swift */; };
 		4E3B69A0231A786400334839 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3B699F231A786400334839 /* BaseModel.swift */; };
+		4EB016E8231D04E600DEE825 /* CellConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB016E7231D04E600DEE825 /* CellConstraints.swift */; };
 		4EB416DD2318B7110019DEC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB416DC2318B7110019DEC1 /* AppDelegate.swift */; };
 		4EB416E22318B7110019DEC1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EB416E02318B7110019DEC1 /* Main.storyboard */; };
 		4EB416E42318B7120019DEC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EB416E32318B7120019DEC1 /* Assets.xcassets */; };
@@ -40,8 +40,8 @@
 /* Begin PBXFileReference section */
 		076F6E2CC02A736BB294C6B6 /* Pods-Pet Adoption Form.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pet Adoption Form.release.xcconfig"; path = "Target Support Files/Pods-Pet Adoption Form/Pods-Pet Adoption Form.release.xcconfig"; sourceTree = "<group>"; };
 		4E0B108B23191BFF00D47761 /* PetAdoptionPageOne_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetAdoptionPageOne_VC.swift; sourceTree = "<group>"; };
-		4E0B108D2319221E00D47761 /* LocalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataService.swift; sourceTree = "<group>"; };
 		4E3B699F231A786400334839 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		4EB016E7231D04E600DEE825 /* CellConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellConstraints.swift; sourceTree = "<group>"; };
 		4EB416D92318B7110019DEC1 /* Pet Adoption Form.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pet Adoption Form.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EB416DC2318B7110019DEC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EB416E12318B7110019DEC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,17 +104,10 @@
 		4E0B107F23190CE900D47761 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				4EB016E7231D04E600DEE825 /* CellConstraints.swift */,
 				4EFB28FC231BEC3100C02235 /* CustomDynamicTableViewCell.swift */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		4E0B108023190CFC00D47761 /* services */ = {
-			isa = PBXGroup;
-			children = (
-				4E0B108D2319221E00D47761 /* LocalDataService.swift */,
-			);
-			path = services;
 			sourceTree = "<group>";
 		};
 		4E8120AD2319364800494382 /* utils */ = {
@@ -148,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				4E8120AD2319364800494382 /* utils */,
-				4E0B108023190CFC00D47761 /* services */,
 				4E0B107F23190CE900D47761 /* view */,
 				4E0B107E23190CD700D47761 /* controller */,
 				4E0B107C23190CCD00D47761 /* model */,
@@ -381,8 +373,8 @@
 				4EC45A4F231BC30F007C4C51 /* IQTextView.swift in Sources */,
 				4EB416DD2318B7110019DEC1 /* AppDelegate.swift in Sources */,
 				4EC45A54231BC30F007C4C51 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				4EB016E8231D04E600DEE825 /* CellConstraints.swift in Sources */,
 				4EC0AF81231C58FA00F22E60 /* DropDown.swift in Sources */,
-				4E0B108E2319221E00D47761 /* LocalDataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

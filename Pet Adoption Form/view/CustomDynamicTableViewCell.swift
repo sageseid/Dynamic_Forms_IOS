@@ -52,7 +52,7 @@ class CustomDynamicTableViewCell: UITableViewCell {
             addSubview(formLabelName)
             addSubview(formTextField)
             
-            formLabelName.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+            formLabelName.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
             formLabelName.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
             formLabelName.bottomAnchor.constraint(equalTo: formTextField.topAnchor, constant: -15).isActive = true
             formLabelName.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
@@ -74,7 +74,7 @@ class CustomDynamicTableViewCell: UITableViewCell {
         
             addSubview(formImageView)
             
-            formImageView.topAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+            formImageView.topAnchor.constraint(equalTo: bottomAnchor, constant: 15).isActive = true
             formImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
             formImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
             formImageView.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
@@ -102,7 +102,7 @@ class CustomDynamicTableViewCell: UITableViewCell {
             addSubview(formLabelName)
             addSubview(formTextField)
             
-            formLabelName.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+            formLabelName.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
             formLabelName.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
             formLabelName.bottomAnchor.constraint(equalTo: formTextField.topAnchor, constant: -15).isActive = true
             formLabelName.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
@@ -124,7 +124,7 @@ class CustomDynamicTableViewCell: UITableViewCell {
             formDatePicker.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
             formDatePicker.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
             formDatePicker.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
-            formDatePicker.heightAnchor.constraint(equalToConstant: 150).isActive = true
+            formDatePicker.heightAnchor.constraint(equalToConstant: 30).isActive = true
             
           
         case "yesno":
@@ -132,17 +132,19 @@ class CustomDynamicTableViewCell: UITableViewCell {
             let dropdown = DropDown()
             dropdown.placeholder = element_model.label
             dropdown.optionArray = ["yes", "no"]
+            addSubview(dropdown)
             
             addSubview(dropdown)
             
-            dropdown.topAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-            dropdown.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
-            dropdown.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-            dropdown.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
-            dropdown.heightAnchor.constraint(equalToConstant: 30).isActive = true
-            
+            dropdown.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 6, paddingBottom: 0, paddingRight: 6, width: frame.size.width, height: frame.size.height, enableInsets: false)
+//            dropdown.topAnchor.constraint(equalTo: bottomAnchor, constant: 15).isActive = true
+//            dropdown.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
+//            dropdown.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+//            dropdown.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
+//            dropdown.heightAnchor.constraint(equalToConstant: 30).isActive = true
+//
         default:
-            print("not encounter type of cell in model given")
+            print("not encountered type of cell in model given")
         }
     }
     

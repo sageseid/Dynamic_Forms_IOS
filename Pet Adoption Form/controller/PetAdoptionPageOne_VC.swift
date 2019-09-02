@@ -9,8 +9,6 @@
 import UIKit
 class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-    
-
     @IBOutlet weak var SBFormTitle: UILabel!
     
     var base = [BaseModel]()
@@ -30,9 +28,28 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
     
     
     @IBAction func SBnextBtnClicked(_ sender: Any) {
+        currentIndex += 1
+        
+        if currentIndex >= (pg.count) {
+            currentIndex = pg.count
+            loadNewTableViewContent()
+        }else {
+            loadNewTableViewContent()
+        }
+        
     }
     
     @IBAction func SBbackBtnClicked(_ sender: Any) {
+         currentIndex -= 1
+        
+        if currentIndex <= 0 {
+            currentIndex = 0
+            loadNewTableViewContent()
+        }else {
+            loadNewTableViewContent()
+        }
+        
+        
     }
     
     
@@ -51,6 +68,20 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
+    
+    func loadNewTableViewContent(){
+        elements.removeAll()
+        let dynamicIndex = pg[currentIndex].sections.flatMap{$0.elements}
+        elements.append(contentsOf: dynamicIndex)
+        
+        elements.forEach { (el) in
+            guard let id  = el.unique_id else {return}
+            print(id)
+            self.DynamicTableView.register(CustomDynamicTableViewCell.self, forCellReuseIdentifier: id)
+        }
+        
+        DynamicTableView.reloadData()
+    }
     
     
     
@@ -113,7 +144,6 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
         let cellIdentifier = cellModel.unique_id
         let customCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier!, for: indexPath) as! CustomDynamicTableViewCell
         customCell.createDynamicTableViewCell(element_model: cellModel)
-    
         return customCell as UITableViewCell
     }
     

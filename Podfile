@@ -7,7 +7,6 @@ target 'Pet Adoption Form' do
 
 
 pod 'SVProgressHUD'
-pod 'ReachabilitySwift'
 pod 'moa', '~> 10.0'
 
 end
