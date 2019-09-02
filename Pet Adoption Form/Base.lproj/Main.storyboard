@@ -34,12 +34,29 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="SBnextBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i6u-8c-Sjq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq5-se-qiC">
+                                <rect key="frame" x="0.0" y="607" width="100" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="GEP-gf-xZP"/>
+                                    <constraint firstAttribute="height" constant="40" id="wfr-Vf-lgQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="SBbackBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="icY-FX-624"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aq5-se-qiC" secondAttribute="bottom" constant="20" id="6F0-Mg-G1l"/>
                             <constraint firstItem="nql-J3-lu7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GlG-hH-XF7"/>
                             <constraint firstItem="1iQ-Dj-jaF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="NRt-44-rCl"/>
+                            <constraint firstItem="aq5-se-qiC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bCb-SG-5dO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nql-J3-lu7" secondAttribute="bottom" constant="20" id="chP-Ug-CR8"/>
                             <constraint firstItem="1iQ-Dj-jaF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="xUC-lY-eyT"/>
                         </constraints>
@@ -91,10 +108,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="Mhh-zo-npG" secondAttribute="trailing" id="dqq-qg-qxE"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="SBFormImage" destination="Mhh-zo-npG" id="QVj-AQ-lAB"/>
-                                            <outlet property="SBFormName" destination="ZaO-1H-anH" id="jxf-Ui-ED7"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="secondCustomCell" rowHeight="100" id="JgB-6d-KzY" customClass="CustomTextInputTableViewCell" customModule="Pet_Adoption_Form" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="261" width="375" height="100"/>
@@ -125,9 +138,6 @@
                                                 <constraint firstItem="PLs-O3-1EO" firstAttribute="trailing" secondItem="9dD-5R-VZP" secondAttribute="trailingMargin" id="uZD-89-ESs"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="SBFormLabel" destination="mCv-M6-QLo" id="9zI-O0-GHw"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="thirdCustomCell" rowHeight="123" id="B6X-xa-PTH" customClass="CustomTextInputTableViewCell" customModule="Pet_Adoption_Form" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="361" width="375" height="123"/>
@@ -217,9 +227,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Next"/>
-                                <connections>
-                                    <segue destination="Sx5-Hl-myp" kind="show" id="UMN-i9-Onv"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xiA-6j-v1e">
                                 <rect key="frame" x="0.0" y="607" width="100" height="40"/>

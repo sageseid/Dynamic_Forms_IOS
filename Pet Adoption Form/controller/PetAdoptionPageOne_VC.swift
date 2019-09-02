@@ -7,7 +7,9 @@
 //
 
 import UIKit
-class PetAdoptionPageOne_VC: UIViewController {
+class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+   
+    
 
     @IBOutlet weak var SBFormTitle: UILabel!
     
@@ -22,15 +24,33 @@ class PetAdoptionPageOne_VC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+
+    }
+    
+    
+    @IBAction func SBnextBtnClicked(_ sender: Any) {
+    }
+    
+    @IBAction func SBbackBtnClicked(_ sender: Any) {
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
         getDataFromLocalJsonFile()
-        setUpTableView()
         
         let pgs = base.flatMap{$0.pages}
         pg.append(contentsOf: pgs)
         let first = pg[currentIndex].sections.flatMap{$0.elements}
         elements.append(contentsOf: first)
         
+        setUpTableView()
+        
     }
+    
+    
     
     
     
@@ -63,19 +83,39 @@ class PetAdoptionPageOne_VC: UIViewController {
     
     func setUpTableView(){
         view.addSubview(DynamicTableView)
+        DynamicTableView.delegate = self
+        DynamicTableView.dataSource = self
+        DynamicTableView.rowHeight = UITableView.automaticDimension
+        DynamicTableView.estimatedRowHeight = 600
+        
+        elements.forEach { (el) in
+            guard let id  = el.unique_id else {return}
+            print(id)
+            self.DynamicTableView.register(CustomDynamicTableViewCell.self, forCellReuseIdentifier: id)
+        }
+        
         DynamicTableView.translatesAutoresizingMaskIntoConstraints = false
         DynamicTableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
         DynamicTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         DynamicTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
         DynamicTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-       
-     
+
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return elements.count
     }
     
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellModel = elements[indexPath.row]
+        let cellIdentifier = cellModel.unique_id
+        let customCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier!, for: indexPath) as! CustomDynamicTableViewCell
+        customCell.createDynamicTableViewCell(element_model: cellModel)
+    
+        return customCell as UITableViewCell
+    }
     
    
 }
