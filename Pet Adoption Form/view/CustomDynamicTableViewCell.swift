@@ -9,13 +9,8 @@
 import UIKit
 import  moa
 
-
-
-
 class CustomDynamicTableViewCell: UITableViewCell {
-    
-  
-    
+
     func updateViews(element_model : ElementsModel){
       createDynamicTableViewCell(element_model: element_model)
     }
@@ -23,10 +18,6 @@ class CustomDynamicTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
-    
-    
-    
     
     func createDynamicTableViewCell(element_model : ElementsModel){
         let typeOfCell = getTypeOfCell(element: element_model)
@@ -131,18 +122,16 @@ class CustomDynamicTableViewCell: UITableViewCell {
             
             let dropdown = DropDown()
             dropdown.placeholder = element_model.label
-            dropdown.optionArray = ["yes", "no"]
-            addSubview(dropdown)
+            dropdown.optionArray = ["Yes", "No"]
+            dropdown.translatesAutoresizingMaskIntoConstraints = false
             
             addSubview(dropdown)
-            
-            dropdown.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 6, paddingBottom: 0, paddingRight: 6, width: frame.size.width, height: frame.size.height, enableInsets: false)
-//            dropdown.topAnchor.constraint(equalTo: bottomAnchor, constant: 15).isActive = true
-//            dropdown.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
-//            dropdown.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-//            dropdown.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
-//            dropdown.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//
+    
+            dropdown.topAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
+            dropdown.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
+            dropdown.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+            dropdown.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
+            dropdown.heightAnchor.constraint(equalToConstant: 80).isActive = true
         default:
             print("not encountered type of cell in model given")
         }
@@ -170,5 +159,8 @@ class CustomDynamicTableViewCell: UITableViewCell {
             return "text"
         }
     }
+    
+    
+    
 
 }

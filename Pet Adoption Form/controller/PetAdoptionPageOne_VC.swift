@@ -9,48 +9,33 @@
 import UIKit
 class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-    @IBOutlet weak var SBFormTitle: UILabel!
+
+    
+    @IBOutlet weak var SBnextBtn: UIButton!
     
     var base = [BaseModel]()
-    var pg = [PagesModel]()
+    var pages_model = [PagesModel]()
     var elements = [ElementsModel]()
     var sections = [SectionsModel]()
     var currentIndex = 0
     
     
+    var nextClick: (() -> ())?
+    var backClick: (() -> ())?
+    
+    
     let DynamicTableView = UITableView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-
     }
     
+   
     
-    @IBAction func SBnextBtnClicked(_ sender: Any) {
-        currentIndex += 1
-        
-        if currentIndex >= (pg.count) {
-            currentIndex = pg.count
-            loadNewTableViewContent()
-        }else {
-            loadNewTableViewContent()
-        }
-        
-    }
     
-    @IBAction func SBbackBtnClicked(_ sender: Any) {
-         currentIndex -= 1
-        
-        if currentIndex <= 0 {
-            currentIndex = 0
-            loadNewTableViewContent()
-        }else {
-            loadNewTableViewContent()
-        }
-        
-        
-    }
+    
+   
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,11 +43,10 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
        
         getDataFromLocalJsonFile()
         
-        let pgs = base.flatMap{$0.pages}
-        pg.append(contentsOf: pgs)
-        let first = pg[currentIndex].sections.flatMap{$0.elements}
+        let pages_models = base.flatMap{$0.pages}
+        pages_model.append(contentsOf: pages_models)
+        let first = pages_model[currentIndex].sections.flatMap{$0.elements}
         elements.append(contentsOf: first)
-        
         setUpTableView()
         
     }
@@ -71,7 +55,8 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
     
     func loadNewTableViewContent(){
         elements.removeAll()
-        let dynamicIndex = pg[currentIndex].sections.flatMap{$0.elements}
+        
+        let dynamicIndex = pages_model[currentIndex].sections.flatMap{$0.elements}
         elements.append(contentsOf: dynamicIndex)
         
         elements.forEach { (el) in
@@ -90,15 +75,14 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
         guard let data = stubbedResponse("pet_adoption") else {return}
         do {
             let decoded = try JSONDecoder().decode(BaseModel.self, from: data)
-            SBFormTitle.text = decoded.name
             base.append(decoded)
         } catch {
             print("error")
         }
         let array = base.compactMap {$0}
             .flatMap{$0.pages}
-        array.forEach { (pg) in
-            sections.append(contentsOf: pg.sections)
+        array.forEach { (pages_model) in
+            sections.append(contentsOf: pages_model.sections)
         }
     }
 
@@ -114,6 +98,8 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
     
     func setUpTableView(){
         view.addSubview(DynamicTableView)
+      
+        
         DynamicTableView.delegate = self
         DynamicTableView.dataSource = self
         DynamicTableView.rowHeight = UITableView.automaticDimension
@@ -130,8 +116,8 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
         DynamicTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         DynamicTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
         DynamicTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-
-    }
+    
+        }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
