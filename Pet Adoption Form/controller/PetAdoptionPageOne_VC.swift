@@ -9,7 +9,6 @@
 import UIKit
 class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-
     
     @IBOutlet weak var SBnextBtn: UIButton!
     
