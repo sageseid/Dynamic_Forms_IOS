@@ -5,7 +5,7 @@
 
 ## List of pods used
 
-pod 'SVProgressHUD'
+pod 'SVProgressHUD' <br />
 pod 'moa', '~> 10.0'
 
 ## swift version used 
