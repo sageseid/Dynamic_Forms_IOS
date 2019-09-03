@@ -31,12 +31,6 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
     }
     
-   
-    
-    
-    
-   
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,7 +46,6 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
-    
     func loadNewTableViewContent(){
         elements.removeAll()
         
@@ -61,14 +54,10 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
         
         elements.forEach { (el) in
             guard let id  = el.unique_id else {return}
-            print(id)
             self.DynamicTableView.register(CustomDynamicTableViewCell.self, forCellReuseIdentifier: id)
         }
-        
         DynamicTableView.reloadData()
     }
-    
-    
     
     
     func getDataFromLocalJsonFile(){
@@ -86,20 +75,23 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
 
+    
      func stubbedResponse(_ filename: String) -> Data! {
         @objc class TestClass: NSObject {}
         let bundle = Bundle(for: TestClass.self)
         let path = bundle.path(forResource: filename, ofType: "json")
         return (try? Data(contentsOf: URL(fileURLWithPath: path!)))
+    }
+    
+    
+    func ValidateForm(){
         
     }
     
     
-    
     func setUpTableView(){
         view.addSubview(DynamicTableView)
-      
-        
+
         DynamicTableView.delegate = self
         DynamicTableView.dataSource = self
         DynamicTableView.rowHeight = UITableView.automaticDimension
@@ -107,7 +99,6 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
         
         elements.forEach { (el) in
             guard let id  = el.unique_id else {return}
-            print(id)
             self.DynamicTableView.register(CustomDynamicTableViewCell.self, forCellReuseIdentifier: id)
         }
         
@@ -116,7 +107,6 @@ class PetAdoptionPageOne_VC: UIViewController, UITableViewDelegate, UITableViewD
         DynamicTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
         DynamicTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
         DynamicTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
-    
         }
     
     

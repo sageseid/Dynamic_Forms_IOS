@@ -10,6 +10,10 @@ import UIKit
 import  moa
 
 class CustomDynamicTableViewCell: UITableViewCell {
+    
+    let  formLabelName  = UILabel()
+    let formTextField = UITextField()
+    let numFormTextField = UITextField()
 
     func updateViews(element_model : ElementsModel){
       createDynamicTableViewCell(element_model: element_model)
@@ -19,13 +23,20 @@ class CustomDynamicTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    
+    func getInputData(element_model : ElementsModel){
+        let typeOfCell = getTypeOfCell(element: element_model)
+        switch typeOfCell {
+            
+        }
+    }
+    
     func createDynamicTableViewCell(element_model : ElementsModel){
         let typeOfCell = getTypeOfCell(element: element_model)
         switch typeOfCell {
         
         case "text":
-            // create ui label
-            let formLabelName  = UILabel()
+            
             formLabelName.textColor  = .black
             formLabelName.translatesAutoresizingMaskIntoConstraints = false
             formLabelName.font = UIFont(name: "Avenir", size: 16)
@@ -33,7 +44,7 @@ class CustomDynamicTableViewCell: UITableViewCell {
             formLabelName.numberOfLines = 0
             formLabelName.text = element_model.label
             
-            let formTextField = UITextField()
+          
             formTextField.textColor = .black
             formTextField.backgroundColor = #colorLiteral(red: 0.4852389693, green: 0.4853243828, blue: 0.485227704, alpha: 1)
             formTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +85,7 @@ class CustomDynamicTableViewCell: UITableViewCell {
             
         case "formattednumeric":
             
-            let formLabelName  = UILabel()
+          
             formLabelName.textColor  = .black
             formLabelName.translatesAutoresizingMaskIntoConstraints = false
             formLabelName.font = UIFont(name: "Avenir", size: 16)
@@ -82,13 +93,13 @@ class CustomDynamicTableViewCell: UITableViewCell {
             formLabelName.numberOfLines = 0
             formLabelName.text = element_model.label
             
-            let formTextField = UITextField()
-            formTextField.textColor = .black
-            formTextField.backgroundColor = #colorLiteral(red: 0.4852389693, green: 0.4853243828, blue: 0.485227704, alpha: 1)
-            formTextField.keyboardType = .numberPad
-            formTextField.translatesAutoresizingMaskIntoConstraints = false
-            formTextField.font = UIFont(name: "Avenir", size: 16)
-            formTextField.textAlignment = .left
+            
+            numFormTextField.textColor = .black
+            numFormTextField.backgroundColor = #colorLiteral(red: 0.4852389693, green: 0.4853243828, blue: 0.485227704, alpha: 1)
+            numFormTextField.keyboardType = .numberPad
+            numFormTextField.translatesAutoresizingMaskIntoConstraints = false
+            numFormTextField.font = UIFont(name: "Avenir", size: 16)
+            numFormTextField.textAlignment = .left
             
             addSubview(formLabelName)
             addSubview(formTextField)
@@ -99,11 +110,11 @@ class CustomDynamicTableViewCell: UITableViewCell {
             formLabelName.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
             formLabelName.heightAnchor.constraint(equalToConstant: 35).isActive = true
             
-            formTextField.topAnchor.constraint(equalTo: formLabelName.bottomAnchor, constant: 10).isActive = true
-            formTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
-            formTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-            formTextField.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
-            formTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
+            numFormTextField.topAnchor.constraint(equalTo: formLabelName.bottomAnchor, constant: 10).isActive = true
+            numFormTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
+            numFormTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+            numFormTextField.rightAnchor.constraint(equalTo: rightAnchor , constant: 0).isActive = true
+            numFormTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
             
             
         case "datetime":

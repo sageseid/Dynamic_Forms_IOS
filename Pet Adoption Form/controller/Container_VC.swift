@@ -22,10 +22,12 @@ class Container_VC: UIViewController, UIPageViewControllerDataSource, UIPageView
     
     @IBOutlet weak var formTitle: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         submitBtn.isHidden = true
     }
+    
     
     @IBAction func submitBtnPressed(_ sender: Any) {
     }
@@ -51,6 +53,7 @@ class Container_VC: UIViewController, UIPageViewControllerDataSource, UIPageView
         }
     }
     
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         var index = (viewController as! PetAdoptionPageOne_VC).currentIndex
         if (index == 0) || (index == NSNotFound) {
@@ -67,7 +70,6 @@ class Container_VC: UIViewController, UIPageViewControllerDataSource, UIPageView
     }
     
     
-    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         var index = (viewController as! PetAdoptionPageOne_VC).currentIndex
         if index == NSNotFound {return nil}
@@ -78,7 +80,6 @@ class Container_VC: UIViewController, UIPageViewControllerDataSource, UIPageView
         }
         return viewControllerAtIndex(index: index)
     }
-    
     
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
@@ -93,17 +94,7 @@ class Container_VC: UIViewController, UIPageViewControllerDataSource, UIPageView
         return currentIndex
     }
     
-    private func pageViewController(pageViewController: UIPageViewController, willTransitionTo: [UIViewController]) {
-        // called when swiping begins
-    }
-    
-    private func pageViewController(pageViewController: UIPageViewController, didFinishAnimating: Bool, previousViewControllers: [UIViewController], transitionCompleted: Bool) {
-        // called when swiping ends
-                if currentIndex  == pg.count {
-                    submitBtn.isHidden = false
-                }
-    }
-    
+   
     func viewControllerAtIndex(index: Int) -> PetAdoptionPageOne_VC? {
         if self.pg.count == 0 || index >= self.pg.count {
             return nil
@@ -135,9 +126,7 @@ class Container_VC: UIViewController, UIPageViewControllerDataSource, UIPageView
         addChild(pageController!)
         view.addSubview(pageController!.view)
         removeSwipeGesture()
-        
     }
-    
     
     
     func getDataFromLocalJsonFile(){
@@ -155,6 +144,7 @@ class Container_VC: UIViewController, UIPageViewControllerDataSource, UIPageView
             sections.append(contentsOf: pg.sections)
         }
     }
+
     
     func stubbedResponse(_ filename: String) -> Data! {
         @objc class TestClass: NSObject {}
